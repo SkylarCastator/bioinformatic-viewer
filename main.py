@@ -1,31 +1,40 @@
 import streamlit as st
+import pandas as pd
+import compound_data
 #import sequence_analyzer as covid
-
-from rdkit import Chem
-from rdkit.Chem import Draw
-from rdkit.Chem import Descriptors
-import requests
 
 class ui_instance:
     def __init__(self):
         self.input_chemical_path = "https://go.drugbank.com/structures/small_molecule_drugs/DB14761.mol"
-
-        st.write("""
+        self.chemical_image = None
+        self.chemical_title = None
+        self.header = st.write("""
         # Bio-Informatic Reader
         Testing a user interface to view information of medicine and diseases.
         """)
         self.tools_sidebar()
         self.analyze_chemical_compond()
 
+
+
     def analyze_chemical_compond(self):
-        chem_mol = requests.get(self.input_chemical_path).text
-        chem_compound = Chem.MolFromMolBlock(chem_mol)
-        im = Draw.MolToImage(chem_compound)
-        print(chem_compound.GetNumAtoms())
-        # print([atom.GetSymbol() for atom in chem_compound.GetAtom()])
-        #print(Descriptors.MolWt(chem_compound))
-        #print(Descriptors.NumRotatableBonds(chem_compound))
-        st.image(im, caption='Analysis of Chemical')
+        compound_instance = compound_data.Compound()
+        compound_instance.parse_compound_from_link(self.input_chemical_path)
+
+        left_column, right_column = st.columns(2)
+        with left_column:
+            self.chemical_image = st.image(compound_instance.compound_img, caption='Analysis of Chemical')
+        with right_column:
+            self.chemical_title = st.write("## Chemical Name")
+            d = {
+                'Key': ['Num of Atoms', 'Mol Weight', 'Num of Rotatable Bonds'],
+                'Value': [
+                    compound_instance.num_of_atoms,
+                    compound_instance.mol_weight,
+                    compound_instance.num_of_rotatable_bonds]
+            }
+            df = pd.DataFrame(data=d)
+            st.dataframe(df)
 
     def tools_sidebar(self):
         st.sidebar.write("""
