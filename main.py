@@ -27,8 +27,11 @@ class ui_instance:
         with right_column:
             self.chemical_title = st.write("## Chemical Name")
             d = {
-                'Key': ['Num of Atoms', 'Mol Weight', 'Num of Rotatable Bonds'],
+                'Key': ['Name', 'Smiles', 'Inchikey', 'Num of Atoms', 'Mol Weight', 'Num of Rotatable Bonds'],
                 'Value': [
+                    compound_instance.name,
+                    compound_instance.smiles,
+                    compound_instance.inchikey,
                     compound_instance.num_of_atoms,
                     compound_instance.mol_weight,
                     compound_instance.num_of_rotatable_bonds]
