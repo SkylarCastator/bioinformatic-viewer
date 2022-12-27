@@ -69,7 +69,7 @@ class SequenceAnalyzer:
                     print(f"atom : {atom}")
 
     def show_3d_diagram(self):
-        with open("../data_samples/6zco.pdb") as ifile:
+        with open("data_samples/6zco.pdb") as ifile:
             system = "".join([x for x in ifile])
         view = py3Dmol.view(width=400, height=300)
         view.addModelsAsFrames(system)
@@ -85,7 +85,7 @@ class SequenceAnalyzer:
 #nv.demo()
 #https://william-dawson.github.io/using-py3dmol.html
 #https://towardsdatascience.com/molecular-visualization-in-streamlit-using-rdkit-and-py3dmol-part-2-657d28152753
-sequence_file_path = "../data_samples/Covid_sequence-NC_045512.fasta"
+sequence_file_path = "data_samples/Covid_sequence-NC_045512.fasta"
 sequence_data = SequenceAnalyzer(sequence_file_path)
 
 

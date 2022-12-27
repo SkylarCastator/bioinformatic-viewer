@@ -1,7 +1,6 @@
 import streamlit as st
-import test_scripts.covid as covid
-import numpy as np
-import pandas as pd
+import sequence_analyzer as covid
+
 
 class ui_instance:
     def __init__(self):
