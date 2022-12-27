@@ -1,0 +1,12 @@
+pillow
+biopython
+colorama
+matplotlib
+matplotlib-inline
+pandas
+py3dmol
+nglview
+ipython
+rdkit
+streamlit
+requests
