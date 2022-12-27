@@ -1,4 +1,6 @@
 import streamlit as st
+import py3Dmol
+from stmol import showmol
 import pandas as pd
 import compound_data
 import dna_data
@@ -35,7 +37,19 @@ class ui_instance:
             df = pd.DataFrame(data=d)
             st.dataframe(df)
 
+    def show_3d_mol(self, protein, bcolor, spin, style):
+        xyzview = py3Dmol.view(query='pdb:' + protein)
+        xyzview.setStyle({style: {'color': 'spectrum'}})
+        xyzview.setBackgroundColor(bcolor)
+        if spin:
+            xyzview.spin(True)
+        else:
+            xyzview.spin(False)
+        xyzview.zoomTo()
+        showmol(xyzview, height=500, width=800)
+
     def analyze_dna_sequence(self, dna_sequence):
+        self.show_3d_mol("1A2C", '#ffffff', True, 'cartoon')
         d = {
             'Key': [
                 'Name',

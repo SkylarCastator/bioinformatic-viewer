@@ -10,3 +10,4 @@ ipython
 rdkit
 streamlit
 requests
+stmol == 0.0.7
