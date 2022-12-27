@@ -36,14 +36,35 @@ class ui_instance:
             st.dataframe(df)
 
     def analyze_dna_sequence(self, dna_sequence):
+        d = {
+            'Key': [
+                'Name',
+                'Length',
+                'Molecular Weight',
+                'GC Percentage',
+                'AT Percentage',
+                'Melting Point GC',
+                'Melting Point Wallace'],
+            'Value': [
+                dna_sequence.name,
+                dna_sequence.dna_length,
+                dna_sequence.molecular_weight,
+                dna_sequence.g_c_percentage,
+                dna_sequence.a_t_percentage,
+                dna_sequence.melting_point_gc,
+                dna_sequence.melting_point_wallace]
+        }
+        df = pd.DataFrame(data=d)
+        st.dataframe(df)
+
         st.subheader('Nitrogenous Bases')
         n_count = Counter(dna_sequence.dna)
-        df = pd.DataFrame.from_records(list(dict(n_count).items()), columns=['bases', 'count'])
+        df = pd.DataFrame.from_dict(n_count, orient='index')
         st.bar_chart(df)
 
         st.subheader('Proteins')
         n_count = Counter(dna_sequence.proteins)
-        df = pd.DataFrame.from_records(list(dict(n_count).items()), columns=['proteins', 'count'])
+        df = pd.DataFrame.from_dict(n_count, orient='index')
         st.bar_chart(df)
 
 
