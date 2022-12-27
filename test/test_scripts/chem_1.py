@@ -1,7 +1,7 @@
 import streamlit as st # https://streamlit.io/
 from rdkit import Chem
 from rdkit.Chem import Draw
-from PIL import Image
+#from PIL import Image
 
 chemical_smile = 'CN1CCC[C@H]1c2cccnc2'
 Chem.MolFromSmiles(chemical_smile)
@@ -20,7 +20,7 @@ chem_compound = Chem.MolFromMolBlock(chem_mol)
 im=Draw.MolToImage(chem_compound)
 im.show()
 print(chem_compound.GetNumAtoms())
-print([atom.GetSymbol() for atom in chem_compound.GetAtom()])
+#print([atom.GetSymbol() for atom in chem_compound.GetAtom()])
 
 from rdkit.Chem import Descriptors
 print(Descriptors.MolWt(chem_compound))
