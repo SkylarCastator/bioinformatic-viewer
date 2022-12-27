@@ -28,7 +28,7 @@ class SequenceAnalyzer:
         df['count'] = df['amino_acids'].str.len()
         df.head()
         df.nlargest(10, 'count')
-        self.show_3d_diagram()
+        #self.show_3d_diagram()
 
 
     def retrieve_dna_rna_proteins(self, record_data):
@@ -69,7 +69,7 @@ class SequenceAnalyzer:
                     print(f"atom : {atom}")
 
     def show_3d_diagram(self):
-        with open("data_samples/6zco.pdb") as ifile:
+        with open("../../data_samples/6zco.pdb") as ifile:
             system = "".join([x for x in ifile])
         view = py3Dmol.view(width=400, height=300)
         view.addModelsAsFrames(system)
@@ -78,15 +78,9 @@ class SequenceAnalyzer:
         view.show()
         #view = nv.show_biopython(structure)
 
-
-#Id NC_045512.2
-#https://www.ncbi.nlm.nih.gov/nuccore/NC_045512.2?report=graph
-#https://www.rcsb.org/structure/6ZCO
-#nv.demo()
-#https://william-dawson.github.io/using-py3dmol.html
-#https://towardsdatascience.com/molecular-visualization-in-streamlit-using-rdkit-and-py3dmol-part-2-657d28152753
-sequence_file_path = "data_samples/Covid_sequence-NC_045512.fasta"
-sequence_data = SequenceAnalyzer(sequence_file_path)
+if __name__ == "__main__":
+    sequence_file_path = "../../data_samples/Covid_sequence-NC_045512.fasta"
+    sequence_data = SequenceAnalyzer(sequence_file_path)
 
 
 

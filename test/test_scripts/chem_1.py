@@ -4,7 +4,6 @@ from rdkit.Chem import Descriptors
 
 #chemical_smile = 'CN1CCC[C@H]1c2cccnc2'
 #Chem.MolFromSmiles(chemical_smile)
-#https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system
 #compound_smiles = 'c1cc(C(=O)O)c(OC(=O)C)cc1'
 #m = Chem.MolFromSmiles(compound_smiles)
 #im=Draw.MolToImage(m)
@@ -51,9 +50,3 @@ try:
     print(smiles_to_iupac(smiles))
 except:
     pass
-
-#https://xinhaoli74.github.io/posts/2020/04/RDKit-Cheatsheet/
-#https://www.rdkit.org/docs/source/rdkit.Chem.PropertyMol.html
-#https://github.com/rdkit/rdkit-tutorials/blob/master/notebooks/005_Chemical_space_analysis_and_visualization.ipynb
-#https://www.rdkit.org/docs/GettingStartedInPython.html
-#https://www.rdkit.org/docs/Cookbook.html

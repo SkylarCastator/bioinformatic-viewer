@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 import compound_data
-#import sequence_analyzer as covid
+import dna_data
+from collections import Counter
 
 class ui_instance:
     def __init__(self):
@@ -34,6 +35,18 @@ class ui_instance:
             df = pd.DataFrame(data=d)
             st.dataframe(df)
 
+    def analyze_dna_sequence(self, dna_sequence):
+        st.subheader('Nitrogenous Bases')
+        n_count = Counter(dna_sequence.dna)
+        df = pd.DataFrame.from_records(list(dict(n_count).items()), columns=['bases', 'count'])
+        st.bar_chart(df)
+
+        st.subheader('Proteins')
+        n_count = Counter(dna_sequence.proteins)
+        df = pd.DataFrame.from_records(list(dict(n_count).items()), columns=['proteins', 'count'])
+        st.bar_chart(df)
+
+
     def tools_sidebar(self):
         st.sidebar.write("""
         # Toolbar
@@ -42,10 +55,20 @@ class ui_instance:
         st.sidebar.write("""
                 ## DNA Tools
                 """)
+        sequence_file_path = st.sidebar.text_input(
+            "DNA Input",
+            "data_samples/Covid_sequence-NC_045512.fasta")
+        if st.sidebar.button('Open'):
+            sequence_data = dna_data.DNA()
+            sequence_data.parse_dna_record(sequence_file_path)
+            self.analyze_dna_sequence(sequence_data)
+
+        self.sidebar_chemical_compound_menu()
+
+    def sidebar_chemical_compound_menu(self):
         st.sidebar.write("""
                 ## Chemical Compound Tools
                 """)
-
         chemical_path = st.sidebar.text_input(
             "Chemical Compound Path",
             "https://go.drugbank.com/structures/small_molecule_drugs/DB14761.mol")
@@ -64,14 +87,4 @@ class ui_instance:
             self.analyze_chemical_compond(compound_instance)
 
 
-
-
-#Id NC_045512.2
-#https://www.ncbi.nlm.nih.gov/nuccore/NC_045512.2?report=graph
-#https://www.rcsb.org/structure/6ZCO
-#nv.demo()
-#https://william-dawson.github.io/using-py3dmol.html
-#https://towardsdatascience.com/molecular-visualization-in-streamlit-using-rdkit-and-py3dmol-part-2-657d28152753
-#sequence_file_path = "../data_samples/Covid_sequence-NC_045512.fasta"
-#sequence_data = covid.SequenceAnalyzer(sequence_file_path)
 ui_instance = ui_instance()
