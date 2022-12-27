@@ -53,3 +53,7 @@ except:
     pass
 
 #https://xinhaoli74.github.io/posts/2020/04/RDKit-Cheatsheet/
+#https://www.rdkit.org/docs/source/rdkit.Chem.PropertyMol.html
+#https://github.com/rdkit/rdkit-tutorials/blob/master/notebooks/005_Chemical_space_analysis_and_visualization.ipynb
+#https://www.rdkit.org/docs/GettingStartedInPython.html
+#https://www.rdkit.org/docs/Cookbook.html
