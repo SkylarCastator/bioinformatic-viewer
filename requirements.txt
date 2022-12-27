@@ -5,9 +5,9 @@ matplotlib
 matplotlib-inline
 pandas
 py3dmol
-nglview
 ipython
 rdkit
 streamlit
 requests
 stmol == 0.0.7
+scikit-bio
