@@ -11,3 +11,4 @@ streamlit
 requests
 stmol == 0.0.7
 scikit-bio
+neatbio

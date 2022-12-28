@@ -2,6 +2,7 @@ import streamlit as st
 import py3Dmol
 from stmol import showmol
 import pandas as pd
+import numpy as np
 import compound_data
 import dna_data
 from collections import Counter
@@ -80,6 +81,13 @@ class ui_instance:
         n_count = Counter(dna_sequence.proteins)
         df = pd.DataFrame.from_dict(n_count, orient='index')
         st.bar_chart(df)
+
+    def show_table_view(self):
+        df = pd.DataFrame(
+            np.random.randn(10, 5),
+            colums=(' col %d' % i for i in range(5))
+        )
+        st.table(df)
 
 
     def tools_sidebar(self):
