@@ -2,6 +2,7 @@ from Bio import SeqIO
 from Bio.SeqUtils import molecular_weight, MeltingTemp as mt
 from Bio.SeqUtils import GC
 import neatbio.sequtils as utils
+from neatbio.sequtils import convert_1to3
 
 
 class DNA:
@@ -23,7 +24,7 @@ class DNA:
         self.dna = sequence_record.seq
         self.rna = self.dna.transcribe()
         self.proteins = self.rna.translate()
-        proteins_three_letter = utils.convert_lto3(str(self.proteins).replace("*", ""))
+        proteins_three_letter = convert_1to3(str(self.proteins).replace("*", ""))
         proteins_full_names = utils.get_acid_name(proteins_three_letter)
         self.dna_length = len(self.dna)
         self.molecular_weight = molecular_weight(self.dna)
